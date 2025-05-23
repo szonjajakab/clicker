@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { GameProvider, useGame } from './contexts/GameContext';
 import GamePage from './pages/GamePage';
 import StartPage from './pages/StartPage';
+import AdminPage from './pages/AdminPage';
 // We'll implement AdminPage later
 // import AdminPage from './pages/AdminPage';
 
@@ -19,6 +20,10 @@ function AppRoutes() {
         <Route 
           path="/game" 
           element={nickname && avatar ? <GamePage /> : <Navigate to="/" />} 
+        />
+        <Route 
+          path="/admin" 
+          element={<AdminPage />} 
         />
       </Routes>
     </Router>

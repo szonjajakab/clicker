@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useGame } from '../contexts/GameContext';
 
 const AVATAR_OPTIONS = [
-  '/avatars/avatar1.png',
-  '/avatars/avatar2.png',
-  '/avatars/avatar3.png',
-  '/avatars/avatar4.png',
+  '/assets/avatars/cat.png',
+  '/assets/avatars/dog.png',
+  '/assets/avatars/monkey.png',
+  '/assets/avatars/panda.png',
 ];
 
 function StartPage() {
@@ -34,7 +34,7 @@ function StartPage() {
           <h1 className="text-4xl md:text-5xl font-bold text-amber-800 mb-4 tracking-tight">
             Cookie Clicker
           </h1>
-          <p className="text-sm text-amber-600/80 font-medium mb-8">
+          <p className="mt-8 text-lg font-medium text-pretty text-gray-300 sm:text-xl/8">
             Start your cookie clicking adventure!
           </p>
         </header>
