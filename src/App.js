@@ -1,21 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { GameProvider, useGame } from './contexts/GameContext';
 import GamePage from './pages/GamePage';
-import UserSetup from './components/UserSetup';
+import StartPage from './pages/StartPage';
 // We'll implement AdminPage later
 // import AdminPage from './pages/AdminPage';
 
 function AppRoutes() {
   const { nickname, avatar } = useGame();
-  if (!nickname || !avatar) {
-    return <UserSetup />;
-  }
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<GamePage />} />
-        {/* <Route path="/admin" element={<AdminPage />} /> */}
+        <Route 
+          path="/" 
+          element={nickname && avatar ? <Navigate to="/game" /> : <StartPage />} 
+        />
+        <Route 
+          path="/game" 
+          element={nickname && avatar ? <GamePage /> : <Navigate to="/" />} 
+        />
       </Routes>
     </Router>
   );
