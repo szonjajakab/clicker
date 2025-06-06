@@ -2,18 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGame } from '../contexts/GameContext';
 
-const AVATAR_OPTIONS = [
-  '/assets/avatars/cat.png',
-  '/assets/avatars/dog.png',
-  '/assets/avatars/monkey.png',
-  '/assets/avatars/panda.png',
-];
-
 function StartPage() {
   const navigate = useNavigate();
-  const { setNickname, setAvatar } = useGame();
+  const { setNickname } = useGame();
   const [selectedNickname, setSelectedNickname] = useState('');
-  const [selectedAvatar, setSelectedAvatar] = useState(AVATAR_OPTIONS[0]);
   const [error, setError] = useState('');
 
   const handleStartGame = (e) => {
@@ -23,7 +15,6 @@ function StartPage() {
       return;
     }
     setNickname(selectedNickname.trim());
-    setAvatar(selectedAvatar);
     navigate('/game');
   };
 
@@ -54,32 +45,6 @@ function StartPage() {
                 placeholder="Your nickname"
               />
               {error && <p className="mt-2 text-red-400 text-sm">{error}</p>}
-            </div>
-
-            <div>
-              <label className="block text-lg font-medium text-gray-200 mb-3">
-                Choose your avatar
-              </label>
-              <div className="grid grid-cols-2 gap-4">
-                {AVATAR_OPTIONS.map((avatar) => (
-                  <button
-                    key={avatar}
-                    type="button"
-                    onClick={() => setSelectedAvatar(avatar)}
-                    className={`p-3 rounded-xl border-2 transition-all ${
-                      selectedAvatar === avatar
-                        ? 'border-purple-500 bg-gray-700/50 shadow-lg shadow-purple-500/20'
-                        : 'border-gray-700 hover:border-purple-400 hover:bg-gray-700/30'
-                    }`}
-                  >
-                    <img
-                      src={avatar}
-                      alt="Avatar option"
-                      className="w-full h-auto rounded-lg"
-                    />
-                  </button>
-                ))}
-              </div>
             </div>
 
             <button

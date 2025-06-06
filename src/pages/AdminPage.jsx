@@ -80,7 +80,6 @@ function AdminPage() {
               <thead>
                 <tr className="text-left border-b-2 border-amber-200">
                   <th className="pb-3 text-amber-800">Player</th>
-                  <th className="pb-3 text-amber-800">Avatar</th>
                   <th className="pb-3 text-amber-800">Score</th>
                   <th className="pb-3 text-amber-800">Session ID</th>
                 </tr>
@@ -89,15 +88,6 @@ function AdminPage() {
                 {players.map((player) => (
                   <tr key={player.session_id} className="border-b border-amber-100">
                     <td className="py-3 text-amber-900">{player.nickname}</td>
-                    <td className="py-3">
-                      {player.avatar && (
-                        <img
-                          src={player.avatar}
-                          alt="Player avatar"
-                          className="w-8 h-8 rounded-full border-2 border-amber-400"
-                        />
-                      )}
-                    </td>
                     <td className="py-3 text-amber-900 font-semibold">{player.score}</td>
                     <td className="py-3 text-amber-900/70 text-sm">{player.session_id}</td>
                   </tr>

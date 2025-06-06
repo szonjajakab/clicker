@@ -9,7 +9,6 @@ export function GameProvider({ children }) {
   const [sessionId, setSessionId] = useState(null);
   const [socket, setSocket] = useState(null);
   const [nickname, setNickname] = useState('');
-  const [avatar, setAvatar] = useState('');
 
   useEffect(() => {
     // Generate a random session ID if not exists
@@ -90,7 +89,7 @@ export function GameProvider({ children }) {
   };
 
   return (
-    <GameContext.Provider value={{ score, incrementScore, resetScore, sessionId, nickname, setNickname, avatar, setAvatar }}>
+    <GameContext.Provider value={{ score, incrementScore, resetScore, sessionId, nickname, setNickname }}>
       {children}
     </GameContext.Provider>
   );

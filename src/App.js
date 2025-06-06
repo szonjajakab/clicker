@@ -8,18 +8,18 @@ import AdminPage from './pages/AdminPage';
 // import AdminPage from './pages/AdminPage';
 
 function AppRoutes() {
-  const { nickname, avatar } = useGame();
+  const { nickname } = useGame();
 
   return (
     <Router>
       <Routes>
         <Route 
           path="/" 
-          element={nickname && avatar ? <Navigate to="/game" /> : <StartPage />} 
+          element={nickname ? <Navigate to="/game" /> : <StartPage />} 
         />
         <Route 
           path="/game" 
-          element={nickname && avatar ? <GamePage /> : <Navigate to="/" />} 
+          element={nickname ? <GamePage /> : <Navigate to="/" />} 
         />
         <Route 
           path="/admin" 
