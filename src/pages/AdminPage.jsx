@@ -79,13 +79,12 @@ function AdminPage() {
       <div className="max-w-4xl mx-auto">
         <header className="text-center py-6 md:py-8">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight font-['Instrument_Serif']">
-            Admin Dashboard
+            Collective number of Sacred Touches
           </h1>
         </header>
 
         <main className="bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-semibold text-white font-['Instrument_Serif']">Total Clicks</h2>
             <button
               onClick={handleResetAllScores}
               className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors font-['Instrument_Serif']"
@@ -95,13 +94,10 @@ function AdminPage() {
           </div>
 
           <div className="text-center py-8">
-            <div className="bg-gray-800/80 rounded-xl p-8 shadow-inner">
-              <p className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-amber-600 to-amber-800 bg-clip-text text-transparent font-['Instrument_Serif']">
+            <div className="w-full flex items-center justify-center">
+              <div className="w-full max-w-xl bg-black text-white font-semibold py-6 px-8 text-6xl md:text-7xl rounded-2xl shadow-lg font-['Instrument_Serif'] flex items-center justify-center">
                 {totalClicks.toLocaleString()}
-              </p>
-              <p className="mt-4 text-lg text-white/80 font-medium font-['Instrument_Serif']">
-                Total Clicks Generated
-              </p>
+              </div>
             </div>
           </div>
         </main>

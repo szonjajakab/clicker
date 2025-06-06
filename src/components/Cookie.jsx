@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useGame } from '../contexts/GameContext';
-import cookieImage from '../assets/cookie.jpg';
+import cookieImage from '../assets/deer.png';
 
 function Cookie() {
   const { incrementScore } = useGame();
@@ -40,8 +40,7 @@ function Cookie() {
           transition-all duration-100 ease-in-out
           ${isAnimating ? 'scale-95 rotate-3' : 'scale-100 rotate-0'}
           hover:scale-105 active:scale-95
-          focus:outline-none focus:ring-4 focus:ring-amber-400/50
-          rounded-full
+          focus:outline-none
         `}
         aria-label="Click the cookie"
         style={{ touchAction: 'manipulation' }}
@@ -50,7 +49,7 @@ function Cookie() {
           <img 
             src={cookieImage} 
             alt="Cookie" 
-            className="select-none rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300"
+            className="select-none shadow-lg hover:shadow-xl transition-shadow duration-300"
             style={{
               width: `${cookieSize}px`,
               height: `${cookieSize}px`,
@@ -58,7 +57,6 @@ function Cookie() {
             }}
             draggable="false"
           />
-          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-400/20 to-amber-600/20 opacity-0 hover:opacity-100 transition-opacity duration-300" />
         </div>
       </button>
     </div>

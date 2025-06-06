@@ -7,7 +7,7 @@ function ScoreCounter() {
   return (
     <div className="text-center py-4 md:py-6">
       <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-        Score
+        Sacred Touch
       </h2>
       <div className="mt-2 md:mt-3 bg-gray-900 rounded-xl p-4 shadow-inner">
         <p className="text-4xl sm:text-5xl md:text-6xl font-bold text-white">

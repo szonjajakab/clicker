@@ -11,7 +11,7 @@ function GamePage() {
       <div className="max-w-4xl mx-auto">
         <header className="text-center py-6 md:py-8">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight font-['Instrument_Serif']">
-            Tap the sigil of the sacred deer to awaken the God.
+            Tap the sigil of the Sacred Deer to awaken the God.
           </h1>
         </header>
         
