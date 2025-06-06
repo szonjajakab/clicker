@@ -3,26 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '../services/supabaseService';
 
 function AdminPage() {
-  const [players, setPlayers] = useState([]);
+  const [totalClicks, setTotalClicks] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Initial fetch of players
-    const fetchPlayers = async () => {
+    // Initial fetch of total clicks
+    const fetchTotalClicks = async () => {
       const { data, error } = await supabase
         .from('clicker')
-        .select('*')
-        .order('score', { ascending: false });
+        .select('score');
 
       if (error) {
-        console.error('Error fetching players:', error);
+        console.error('Error fetching scores:', error);
         return;
       }
 
-      setPlayers(data || []);
+      // Calculate total clicks
+      const total = data.reduce((sum, player) => sum + (player.score || 0), 0);
+      setTotalClicks(total);
     };
 
-    fetchPlayers();
+    fetchTotalClicks();
 
     // Subscribe to real-time updates
     const channel = supabase
@@ -35,7 +36,7 @@ function AdminPage() {
           table: 'clicker'
         },
         (payload) => {
-          fetchPlayers(); // Refresh the entire list when any change occurs
+          fetchTotalClicks(); // Refresh the total when any change occurs
         }
       )
       .subscribe();
@@ -46,11 +47,29 @@ function AdminPage() {
   }, []);
 
   const handleResetAllScores = async () => {
-    const { error } = await supabase
-      .from('clicker')
-      .update({ score: 0 });
+    try {
+      // First, get all session IDs
+      const { data: players, error: fetchError } = await supabase
+        .from('clicker')
+        .select('session_id');
 
-    if (error) {
+      if (fetchError) {
+        throw fetchError;
+      }
+
+      // Update each player's score to 0
+      const updatePromises = players.map(player => 
+        supabase
+          .from('clicker')
+          .update({ score: 0 })
+          .eq('session_id', player.session_id)
+      );
+
+      await Promise.all(updatePromises);
+      
+      // Update local state
+      setTotalClicks(0);
+    } catch (error) {
       console.error('Error resetting scores:', error);
     }
   };
@@ -66,7 +85,7 @@ function AdminPage() {
 
         <main className="bg-white/50 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-semibold text-amber-800">Player Scores</h2>
+            <h2 className="text-2xl font-semibold text-amber-800">Total Clicks</h2>
             <button
               onClick={handleResetAllScores}
               className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
@@ -75,25 +94,15 @@ function AdminPage() {
             </button>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="text-left border-b-2 border-amber-200">
-                  <th className="pb-3 text-amber-800">Player</th>
-                  <th className="pb-3 text-amber-800">Score</th>
-                  <th className="pb-3 text-amber-800">Session ID</th>
-                </tr>
-              </thead>
-              <tbody>
-                {players.map((player) => (
-                  <tr key={player.session_id} className="border-b border-amber-100">
-                    <td className="py-3 text-amber-900">{player.nickname}</td>
-                    <td className="py-3 text-amber-900 font-semibold">{player.score}</td>
-                    <td className="py-3 text-amber-900/70 text-sm">{player.session_id}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="text-center py-8">
+            <div className="bg-white/80 rounded-xl p-8 shadow-inner">
+              <p className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-amber-600 to-amber-800 bg-clip-text text-transparent">
+                {totalClicks.toLocaleString()}
+              </p>
+              <p className="mt-4 text-lg text-amber-700/80 font-medium">
+                Total Clicks Generated
+              </p>
+            </div>
           </div>
         </main>
       </div>
