@@ -28,21 +28,21 @@ function StartPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-amber-100 to-amber-200 p-4 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-800 p-4 md:p-8">
       <div className="max-w-md mx-auto">
         <header className="text-center py-6 md:py-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-amber-800 mb-4 tracking-tight">
+          <h1 className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-orange-500 mb-4">
             Cookie Clicker
           </h1>
-          <p className="mt-8 text-lg font-medium text-pretty text-gray-300 sm:text-xl/8">
+          <p className="mt-4 text-lg font-medium text-gray-300">
             Start your cookie clicking adventure!
           </p>
         </header>
 
-        <main className="bg-white/50 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8">
-          <form onSubmit={handleStartGame} className="space-y-6">
+        <main className="bg-gray-800/50 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-700 p-6 md:p-8">
+          <form onSubmit={handleStartGame} className="space-y-8">
             <div>
-              <label htmlFor="nickname" className="block text-sm font-medium text-amber-800 mb-2">
+              <label htmlFor="nickname" className="block text-lg font-medium text-gray-200 mb-3">
                 Enter your nickname
               </label>
               <input
@@ -50,14 +50,14 @@ function StartPage() {
                 id="nickname"
                 value={selectedNickname}
                 onChange={(e) => setSelectedNickname(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg border border-amber-200 focus:ring-2 focus:ring-amber-400 focus:border-transparent"
+                className="w-full px-4 py-3 rounded-lg bg-gray-700 border-2 border-gray-600 text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                 placeholder="Your nickname"
               />
-              {error && <p className="mt-1 text-red-500 text-sm">{error}</p>}
+              {error && <p className="mt-2 text-red-400 text-sm">{error}</p>}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-amber-800 mb-2">
+              <label className="block text-lg font-medium text-gray-200 mb-3">
                 Choose your avatar
               </label>
               <div className="grid grid-cols-2 gap-4">
@@ -66,10 +66,10 @@ function StartPage() {
                     key={avatar}
                     type="button"
                     onClick={() => setSelectedAvatar(avatar)}
-                    className={`p-2 rounded-lg border-2 transition-all ${
+                    className={`p-3 rounded-xl border-2 transition-all ${
                       selectedAvatar === avatar
-                        ? 'border-amber-400 bg-amber-50'
-                        : 'border-transparent hover:border-amber-200'
+                        ? 'border-purple-500 bg-gray-700/50 shadow-lg shadow-purple-500/20'
+                        : 'border-gray-700 hover:border-purple-400 hover:bg-gray-700/30'
                     }`}
                   >
                     <img
@@ -84,7 +84,7 @@ function StartPage() {
 
             <button
               type="submit"
-              className="w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+              className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white font-semibold py-4 px-6 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-purple-500/25"
             >
               Start Game
             </button>
