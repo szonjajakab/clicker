@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { GameProvider, useGame } from './contexts/GameContext';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { GameProvider } from './contexts/GameContext';
 import GamePage from './pages/GamePage';
 import StartPage from './pages/StartPage';
 import AdminPage from './pages/AdminPage';
@@ -8,23 +8,12 @@ import AdminPage from './pages/AdminPage';
 // import AdminPage from './pages/AdminPage';
 
 function AppRoutes() {
-  const { nickname } = useGame();
-
   return (
     <Router>
       <Routes>
-        <Route 
-          path="/" 
-          element={nickname ? <Navigate to="/game" /> : <StartPage />} 
-        />
-        <Route 
-          path="/game" 
-          element={nickname ? <GamePage /> : <Navigate to="/" />} 
-        />
-        <Route 
-          path="/admin" 
-          element={<AdminPage />} 
-        />
+        <Route path="/" element={<StartPage />} />
+        <Route path="/game" element={<GamePage />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </Router>
   );

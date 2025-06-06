@@ -75,31 +75,31 @@ function AdminPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-amber-100 to-amber-200 p-4 md:p-8">
+    <div className="min-h-screen bg-black p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         <header className="text-center py-6 md:py-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-amber-800 mb-4 tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight font-['Instrument_Serif']">
             Admin Dashboard
           </h1>
         </header>
 
-        <main className="bg-white/50 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8">
+        <main className="bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-semibold text-amber-800">Total Clicks</h2>
+            <h2 className="text-2xl font-semibold text-white font-['Instrument_Serif']">Total Clicks</h2>
             <button
               onClick={handleResetAllScores}
-              className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+              className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors font-['Instrument_Serif']"
             >
               Reset All Scores
             </button>
           </div>
 
           <div className="text-center py-8">
-            <div className="bg-white/80 rounded-xl p-8 shadow-inner">
-              <p className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-amber-600 to-amber-800 bg-clip-text text-transparent">
+            <div className="bg-gray-800/80 rounded-xl p-8 shadow-inner">
+              <p className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-amber-600 to-amber-800 bg-clip-text text-transparent font-['Instrument_Serif']">
                 {totalClicks.toLocaleString()}
               </p>
-              <p className="mt-4 text-lg text-amber-700/80 font-medium">
+              <p className="mt-4 text-lg text-white/80 font-medium font-['Instrument_Serif']">
                 Total Clicks Generated
               </p>
             </div>

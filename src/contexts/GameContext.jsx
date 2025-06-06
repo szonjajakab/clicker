@@ -8,7 +8,6 @@ export function GameProvider({ children }) {
   const [score, setScore] = useState(0);
   const [sessionId, setSessionId] = useState(null);
   const [socket, setSocket] = useState(null);
-  const [nickname, setNickname] = useState('');
 
   useEffect(() => {
     // Generate a random session ID if not exists
@@ -29,7 +28,6 @@ export function GameProvider({ children }) {
 
       if (data) {
         setScore(data.score || 0);
-        setNickname(data.nickname || '');
       }
     };
 
@@ -50,13 +48,12 @@ export function GameProvider({ children }) {
   // Save score to Supabase whenever it changes
   useEffect(() => {
     const saveScore = async () => {
-      if (sessionId && nickname) {
+      if (sessionId) {
         const { error } = await supabase
           .from('clicker')
           .upsert({ 
             session_id: sessionId,
             score: score,
-            nickname: nickname,
             created_at: new Date().toISOString()
           }, { onConflict: ['session_id'] });
 
@@ -70,7 +67,7 @@ export function GameProvider({ children }) {
     if (socket) {
       socket.emit('scoreUpdate', { sessionId, score });
     }
-  }, [score, socket, sessionId, nickname]);
+  }, [score, socket, sessionId]);
 
   const incrementScore = () => {
     setScore(prevScore => prevScore + 1);
@@ -89,7 +86,7 @@ export function GameProvider({ children }) {
   };
 
   return (
-    <GameContext.Provider value={{ score, incrementScore, resetScore, sessionId, nickname, setNickname }}>
+    <GameContext.Provider value={{ score, incrementScore, resetScore, sessionId }}>
       {children}
     </GameContext.Provider>
   );
