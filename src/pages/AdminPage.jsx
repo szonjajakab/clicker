@@ -84,14 +84,14 @@ function AdminPage() {
         </header>
 
         <main className="bg-black backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8">
-          <div className="flex justify-between items-center mb-6">
+          {/* <div className="flex justify-between items-center mb-6">
             <button
               onClick={handleResetAllScores}
               className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors font-['Instrument_Serif']"
             >
               Reset All Scores
             </button>
-          </div>
+          </div> */}
 
           <div className="text-center py-8">
             <div className="w-full flex items-center justify-center">
