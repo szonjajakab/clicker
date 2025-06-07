@@ -83,7 +83,7 @@ function AdminPage() {
           </h1>
         </header>
 
-        <main className="bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8">
+        <main className="bg-black backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8">
           <div className="flex justify-between items-center mb-6">
             <button
               onClick={handleResetAllScores}
@@ -96,7 +96,7 @@ function AdminPage() {
           <div className="text-center py-8">
             <div className="w-full flex items-center justify-center">
               <div className="w-full max-w-xl bg-black text-white font-semibold py-6 px-8 text-6xl md:text-7xl rounded-2xl shadow-lg font-['Instrument_Serif'] flex items-center justify-center">
-                {totalClicks.toLocaleString()}
+                {totalClicks.toLocaleString()} / 33 333
               </div>
             </div>
           </div>

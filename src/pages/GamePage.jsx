@@ -14,8 +14,7 @@ function GamePage() {
             Tap the sigil of the Sacred Deer to awaken the God.
           </h1>
         </header>
-        
-        <main className="bg-gray-900/50 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8">
+        <main className="bg-black rounded-2xl shadow-xl p-6 md:p-8">
           <ScoreCounter />
           <Cookie />
         </main>
